@@ -24,6 +24,7 @@ final class PostPresenter extends Nette\Application\UI\Presenter
 	}
 
 	$this->template->post = $post;
+	$this->template->comments = $post->related('comments')->order('created_at');
 }
 
 protected function createComponentCommentForm(): Form

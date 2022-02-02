@@ -19,4 +19,5 @@ di:
 security:
 	users:
 		admin: secret  # user 'admin', password 'secret'
+		VladikPutin: Gulag123
 

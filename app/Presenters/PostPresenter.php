@@ -1,7 +1,7 @@
 <?php 
 
 namespace App\Presenters;
-namespace App\Model\PostFacade;
+use App\Model\PostFacade;
 
 use Nette;
 use Nette\Application\UI\Form;

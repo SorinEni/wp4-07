@@ -30,7 +30,7 @@ final class EditPresenter extends Nette\Application\UI\Presenter
 
 public function renderEdit(int $postId): void
 {
-	$post = $this->PostFacade->getPostById
+	$post = $this->facade->getPostById
 		->table('posts')
 		->get($postId);
 
@@ -44,16 +44,17 @@ public function renderEdit(int $postId): void
 
 public function postFormSucceeded(array $data): void
 {
-	$postId = $this->getPostById('postId');
+	$postId = $this->facade->insertPost('postId');
 
 	if ($postId) {
-		$post = $this->editPost
+		$post = $this->facade->editPost
 			->table('posts')
 			->get($postId);
+
 		
 
 	} else {
-		$post = $this->insertPost;
+		$post = $this->facade->insertPost($data);
 	}
 
 	$this->flashMessage('Příspěvek byl úspěšně publikován.', 'success');

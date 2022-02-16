@@ -31,7 +31,7 @@ final class PostFacade
 
 	public function getComments(int $postId)
 	{
-		$post = $this->database
+		return $this->database
 			->table('comments')
 			->get($postId);
 	}
@@ -52,6 +52,7 @@ final class PostFacade
 			->table('posts')
 			->get($postId);
 		$post->update($data);
+		return $post;
 	}
 
 	public function insertPost(array $data)

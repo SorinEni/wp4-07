@@ -27,13 +27,16 @@ final class PostFacade
 		$post = $this->database
 			->table('posts')
 			->get($postId);
+
+		return $post;
 	}
 
 	public function getComments(int $postId)
 	{
 		return $this->database
 			->table('comments')
-			->get($postId);
+			->where('post_id', $postId);
+
 	}
 
 	public function addComent(int $postId, \stdClass $data)
@@ -60,5 +63,6 @@ final class PostFacade
 		$post = $this->database
 			->table('posts')
 			->insert($data);
+		return $post;
 	}
 }

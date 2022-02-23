@@ -44,15 +44,11 @@ public function renderEdit(int $postId): void
 
 public function postFormSucceeded(array $data): void
 {
-	$postId = $this->facade->insertPost('postId');
+	$postId = $this->getParameter('postId');
 
 	if ($postId) {
-		$post = $this->facade->editPost
-			->table('posts')
-			->get($postId);
-
-		
-
+		$post = $this->facade->editPost($postId, $data);
+	
 	} else {
 		$post = $this->facade->insertPost($data);
 	}

@@ -8,6 +8,8 @@
 
 <div class="post">{$post->content}</div>
 
+<h3>Počet shlednutí: <n:block="views_count">{$post->views_count}
+
 <h2>Vložte nový příspěvek</h2>
 
 {control commentForm}
@@ -27,6 +29,8 @@
 <a n:href="Edit:edit $post->id">Upravit příspěvek</a>
 <a n:href="Edit:create" n:if="$user->isLoggedIn()">Vytvořit příspěvek</a>
 {if $user->isLoggedIn()}<a n:href="Edit:create">Vytvořit příspěvek</a>{/if}
+
+
 
 {/block}
 

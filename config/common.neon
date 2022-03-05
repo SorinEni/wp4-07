@@ -16,8 +16,8 @@ di:
 		parameters: no
 		tags: no
 
-security:
-	users:
-		admin: secret  # user 'admin', password 'secret'
-		VladikPutin: Gulag123
+#security:
+#	users:
+#		admin: secret  # user 'admin', password 'secret'
+#		VladikPutin: Gulag123
 

@@ -7,7 +7,7 @@
 <h1 n:block="title">{$post->title}</h1>
 
 <div class="post">{$post->content}</div>
-
+<img src="{$basePath}/{$post->image}" alt="Obrázek k článku {$post->title}">
 <h3>Počet shlednutí: <n:block="views_count">{$post->views_count} </h3>
 
 <h2>Vložte nový příspěvek</h2>

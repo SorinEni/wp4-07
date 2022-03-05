@@ -22,7 +22,7 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
 
 	public function renderDefault(): void
 	{
-
+		
 		$this->template->posts = $this->facade
 			->getPublicArticles()
 			->limit(5);

@@ -19,16 +19,14 @@ final class EditPresenter extends Nette\Application\UI\Presenter
 	protected function createComponentPostForm(): Form
 	{
 
-
 		$form = new Form;
 		$form->addText('title', 'Titulek:')
 			->setRequired();
 		$form->addTextArea('content', 'Obsah:')
 			->setRequired();
 		$form->addUpload('image', 'Soubor')
-			->setRequired()
+			//->setRequired()
 			->addRule(Form::IMAGE, 'Thumbnail must be JPEG, PNG or Gif.');
-
 		$form->addSubmit('send', 'Uložit a publikovat');
 		$form->onSuccess[] = [$this, 'postFormSucceeded'];
 
@@ -48,12 +46,13 @@ final class EditPresenter extends Nette\Application\UI\Presenter
 	{
 		$postId = $this->getParameter('postId');
 
-		if (filesize($data->image) > 0) {
+		
 			if ($data->image->isOk()) {
 				$data->image->move('upload/' . $data->image->getSanitizedName());
 				$data['image'] = ('upload/' . $data->image->getSanitizedName());
-			}
+			
 		} else {
+			unset($data->image);
 			$this->flashMessage('Soubor nebyl přidán', 'failed');
 		}
 

@@ -77,9 +77,9 @@ final class EditPresenter extends Nette\Application\UI\Presenter
 		}
 	}
 
-	public function actionDeleteImage(int $postId){
+	public function handleDeleteImage(int $postId){
 		$data['image'] = null;
 		$this->facade->editPost($postId, $data);
-		$this->redirect('Edit:edit', $postId);
+		//$this->redirect('Edit:edit', $postId);
 	}
 }

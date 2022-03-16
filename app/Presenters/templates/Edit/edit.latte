@@ -2,4 +2,8 @@
 <h1>Upravit příspěvek</h1>
 
 {control postForm}
-<a n:href="Edit:deleteImage $post->id">Smazat obrazek</a>
+{if $post->image == null}
+{php echo "No image available"}
+{else}
+<a n:href="deleteImage! $post->id">Smazat obrazek</a>
+{/if}

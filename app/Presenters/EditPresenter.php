@@ -30,6 +30,14 @@ final class EditPresenter extends Nette\Application\UI\Presenter
 		$form->addSubmit('send', 'Uložit a publikovat');
 		$form->onSuccess[] = [$this, 'postFormSucceeded'];
 
+		$statuses = [
+            'OPEN' => 'OTEVŘENÝ',
+            'CLOSED' => 'UZAVŘENÝ',
+            'ARCHIVED' => 'ARCHIVOVANÝ'
+        ];
+        $form->addSelect('status', 'Stav:', $statuses)
+            ->setDefaultValue('OPEN');
+			
 		return $form;
 	}
 

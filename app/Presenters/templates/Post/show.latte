@@ -17,7 +17,7 @@
 
 			<h2>Vložte nový příspěvek</h2>
 
-			{control commentForm}
+			
 
 			<h2>Komentáře</h2>
 
@@ -29,6 +29,13 @@
 
 					<div>{$comment->content}</div>
 				{/foreach}
+				{if ($post->status == 'OPEN') || ($post->status == 'CLOSED' && $user->isLoggedIn())}
+					{control commentForm}
+				{elseif $post->status == 'ARCHIVED'}
+					<p>Příspěvek je archivován</p>
+				{else}
+				<p>Nemůžete přidávat komentáře, sorry jako XD</p>
+				{/if}
 			</div>
 
 			<a n:href="Edit:edit $post->id">Upravit příspěvek</a>

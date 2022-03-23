@@ -58,7 +58,18 @@ public function commentFormSucceeded(\stdClass $data): void
 	$this->flashMessage('Děkuji za komentář', 'success');
 	$this->redirect('this');
 }
+	public function actionShow(int $postId): void
+		{
+			$post = $this->facade
+			->getPostById($postId);
 
+			if (!$this->getUser()->isLoggedIn() && $post->status == 'ARCHIVED') {
+				
+				$this->flashMessage('Sup my nügga, unfortunately youre not able to view this high security content. Please log in to gain your permissions.');
+				$this->redirect('Homepage:');
+			} else {
+			}
+		}
 }
 
 

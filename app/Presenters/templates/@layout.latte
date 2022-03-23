@@ -20,10 +20,6 @@
 	<script src="https://nette.github.io/resources/js/3/netteForms.min.js"></script>
 	{/block}
 
-	<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">
-	{$flash->message}
-	</div>
-
 	<ul class="navig">
 	<li><a n:href="Homepage:">Články</a></li>
 	{if $user->isLoggedIn()}

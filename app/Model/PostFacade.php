@@ -85,4 +85,45 @@ final class PostFacade
 
 	}
 
+	public function updateRating(int $userId, int $postId, int $like)
+    {
+        $ratingRow = $this->database
+            ->table('rating')
+            ->get([
+                'user_id' => $userId,
+                'post_id' => $postId,
+            ]);
+
+        if ($ratingRow != null) {
+            $this->database
+                ->query('UPDATE rating SET like_value = ? WHERE user_id = ? AND post_id = ?',
+                 $like, $userId, $postId);
+        } else {
+            $this->database
+                ->table('rating')
+                ->insert([
+                    'user_id' => $userId,
+                    'post_id' => $postId,
+                    'like_value' => $like
+                ]);
+        }
+	}
+		public function getUserRating(int $postId, int $userId) {
+
+    		$like = $this->database
+        	->table('rating')
+        	->where([
+             	'user_id' => $userId,
+             	'post_id' => $postId
+    		]);
+
+			if ($like->count() == 0){
+				return null;
+			}
+				//bdump($like->fetch()->like_value);
+				return $like->fetch()->like_value;
+		}
+
+
+	
 }

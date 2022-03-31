@@ -21,14 +21,19 @@ final class PostPresenter extends Nette\Application\UI\Presenter
 		->getPostById($postId);
 
 		$this ->facade->addView($postId);
+
+		
 		
 	if (!$post) {
 		$this->error('Stránka nebyla nalezena');
 	}
-
 	$this->template->post = $post;
 	$this->template->comments = $this->facade->getComments($postId);
+	$this->template->like = $this->facade->getUserRating($postId, $this->user->id);
 }
+
+
+
 
 protected function createComponentCommentForm(): Form
 {
@@ -60,16 +65,23 @@ public function commentFormSucceeded(\stdClass $data): void
 }
 	public function actionShow(int $postId): void
 		{
-			$post = $this->facade
-			->getPostById($postId);
-
-			if (!$this->getUser()->isLoggedIn() && $post->status == 'ARCHIVED') {
+	
+			if (!$this->getUser()->isLoggedIn() && $post = $this->facade->getPostById($postId)->status == 'ARCHIVED') {
 				
 				$this->flashMessage('Sup my nügga, unfortunately youre not able to view this high security content. Please log in to gain your permissions.');
 				$this->redirect('Homepage:');
 			} else {
 			}
 		}
+
+	public function handleLike(int $postId, int $like){
+		if ($this->getUser()->isLoggedIn()) {
+
+			$userId = $this->getUser()->getId();
+			$this->facade->updateRating($userId, $postId, $like);
+		}
+	
+	}	
 }
 
 

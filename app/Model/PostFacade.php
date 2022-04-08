@@ -39,7 +39,7 @@ final class PostFacade
 
 	}
 
-	public function addComent(int $postId, \stdClass $data)
+	public function addComment(int $postId, \stdClass $data)
 	{
 		$this->database->table('comments')->insert([
 			'post_id' => $postId,
@@ -124,6 +124,6 @@ final class PostFacade
 				return $like->fetch()->like_value;
 		}
 
-
+		
 	
 }

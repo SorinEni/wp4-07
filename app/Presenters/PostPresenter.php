@@ -79,6 +79,7 @@ public function commentFormSucceeded(\stdClass $data): void
 
 			$userId = $this->getUser()->getId();
 			$this->facade->updateRating($userId, $postId, $like);
+			$this->redrawControl('like');
 		}
 	
 	}	

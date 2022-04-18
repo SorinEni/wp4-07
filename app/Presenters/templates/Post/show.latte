@@ -14,15 +14,15 @@
 					<img src="{$basePath}/upload/noimage.png" alt="Obrázek k článku {$post->title}">
 			{/if}
 			<h3>Počet shlednutí: <n:block="views_count">{$post->views_count} </h3>
-			
-			{if $user->isLoggedIn()}
-            <a n:href="like! $post->id,1" class="btn btn-{if $like == 0}outline-{/if}success">
-            Líbí</a>
-   
-            <a n:href="like! $post->id,0" class="btn  btn-{if $like == 1}outline-{/if}danger">
-            Nelíbí</a>
-            {/if}
-
+			{snippet like}
+				{if $user->isLoggedIn()}
+					<a n:href="like! $post->id,1" class="ajax btn btn-{if $like == 0}outline-{/if}success">
+					Líbí</a>
+		
+					<a n:href="like! $post->id,0" class="ajax btn  btn-{if $like == 1}outline-{/if}danger">
+				Nelíbí</a>
+				{/if}
+			{/snippet}
 			<h2>Vložte nový příspěvek</h2>
 
 			

@@ -1,12 +1,14 @@
 {block content}
 <h1>Upravit příspěvek</h1>
 
-{control postForm}
+
 
 {snippet image}
+{control postForm}
+
     {if $post->image == null}
         {php echo "No image available"}
         {else}
         <a class="ajax" n:href="deleteImage! $post->id">Smazat obrazek</a>
     {/if}
-{/snippet image}
+{/snippet}

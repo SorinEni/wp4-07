@@ -4,11 +4,13 @@
 
 
 {snippet image}
-{control postForm}
+    {control postForm}
 
-    {if $post->image == null}
-        {php echo "No image available"}
-        {else}
-        <a class="ajax" n:href="deleteImage! $post->id">Smazat obrazek</a>
-    {/if}
+        {if $post->image == null}
+            {php echo "No image available"}
+            {else}
+            <a class="ajax" n:href="deleteImage! $post->id">Smazat obrazek</a>
+        {/if}
 {/snippet}
+
+<a n:href="deletePost! $post->id">Smazat příspěvek</a>

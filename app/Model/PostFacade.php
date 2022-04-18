@@ -124,6 +124,13 @@ final class PostFacade
 				return $like->fetch()->like_value;
 		}
 
+		public function deletePost(int $postId)
+		{
+			$this->database
+				->table('posts')
+				->get($postId)
+				->delete();
+		}
 		
 	
 }

@@ -91,4 +91,9 @@ final class EditPresenter extends Nette\Application\UI\Presenter
 		$this->redrawControl('image');
 		//$this->redirect('Edit:edit', $postId);
 	}
+
+	public function handleDeletePost(int $postId){
+		$this->facade->deletePost($postId);
+		$this->redirect('Homepage:');
+	}
 }

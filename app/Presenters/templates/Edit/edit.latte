@@ -1,11 +1,15 @@
 {block content}
 <h1>Upravit příspěvek</h1>
 
-
+{control postForm}
 
 {snippet image}
-    {control postForm}
-
+    
+        {if $post->image}
+					<img src="{$basePath}/{$post->image}" alt="Obrázek k článku {$post->title}">
+			{else}
+					<img src="{$basePath}/upload/noimage.png" alt="Obrázek k článku {$post->title}">
+			{/if}
         {if $post->image == null}
             {php echo "No image available"}
             {else}

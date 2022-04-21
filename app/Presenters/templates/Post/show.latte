@@ -16,10 +16,10 @@
 			<h3>Počet shlednutí: <n:block="views_count">{$post->views_count} </h3>
 			{snippet like}
 				{if $user->isLoggedIn()}
-					<a n:href="like! $post->id,1" class="ajax btn btn-{if $like == 0}outline-{/if}success">
+					<a n:href="like! $post->id,1" class="btn btn-{if $like == 0}outline-{/if}success ajax">
 					Líbí</a>
 		
-					<a n:href="like! $post->id,0" class="ajax btn  btn-{if $like == 1}outline-{/if}danger">
+					<a n:href="like! $post->id,0" class="btn  btn-{if $like == 1}outline-{/if}danger ajax">
 				Nelíbí</a>
 				{/if}
 			{/snippet}

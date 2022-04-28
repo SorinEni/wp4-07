@@ -19,23 +19,23 @@ class RegistrationPresenter extends \Nette\Application\UI\Presenter
 		$form->addText('username', 'Username:')->setRequired('Please enter your username.');
 		$form->addEmail('email', 'Email')->setRequired('Please enter email');
 		$form->addPassword('pwd', 'Password')->setRequired('Please enter password');
-		$form->addPassword('pwd2', 'Password (verify)')->setRequired('Please enter password for verification');
 		$form->addSubmit('register', 'Register');
 		
 		
 		$form->onSuccess[] = function() use ($form) {
-			$passwords_hash = new Nette\Security\Passwords();
+			$passwords_hash = new Nette\Security\Passwords();	#hashovaci funkce
 			$values = $form->getValues();
-			$this->database->table('users')->insert([
-				'email' => $values->email,
-				'password' => $passwords_hash->hash($values->pwd),
-				'username' => $values->username,
+			if ($this->database->table('users')->where('username', $values->username)->count()>0) {
+				$this->flashMessage("User already exist", "error");
+			} else {
+				$this->database->table('users')->insert([
+					'email' => $values->email,
+					'password' => $passwords_hash->hash($values->pwd), #hashovani hesla
+					'username' => $values->username,
 			]);
 			$this->flashMessage('You have been registered.');
-		};
-
-		$form->onSuccess[] = function() {
-			$this->redirect('Homepage:default');
+			$this->redirect('Homepage:default'); 
+		}
 		};
 
 		return $form;

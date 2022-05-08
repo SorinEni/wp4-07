@@ -82,9 +82,12 @@ public function commentFormSucceeded(\stdClass $data): void
 			$this->redrawControl('like');
 		}
 	
-	}	
+	}
+
+	public function handleDeleteComment(int $commentId): void
+	{
+		$this->facade->deleteComment($commentId);
+		$this->flashMessage('Komentář byl smazán', 'success');
+	}
+
 }
-
-
-
-

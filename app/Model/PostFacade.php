@@ -131,6 +131,14 @@ final class PostFacade
 				->get($postId)
 				->delete();
 		}
+
+		public function deleteComment(int $commentId)
+		{
+			$this->database
+				->table('comments')
+				->get($commentId)
+				->delete();
+		}
 		
 	
 }

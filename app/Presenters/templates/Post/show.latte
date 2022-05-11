@@ -30,13 +30,18 @@
 			<h2>Komentáře</h2>
 
 			<div class="comments">
-				{foreach $comments as $comment}
-					<p><b><a href="mailto:{$comment->email}" n:tag-if="$comment->email">
-						{$comment->name}
-					</a></b> napsal:</p>
+				{snippet comments}
+					{foreach $comments as $comment}
+						<p><b><a href="mailto:{$comment->email}" n:tag-if="$comment->email">
+							{$comment->name}
+						</a></b> napsal:</p>
 
-					<div>{$comment->content}</div>
-				{/foreach}
+						<div>{$comment->content}</div>
+							{if in_array('Admin', $user->roles)}
+							<a class="ajax" n:href="deleteComment! $comment->id">Smazat komentář</a>
+							{/if}
+					{/foreach}
+				{/snippet}
 				{if ($post->status == 'OPEN') || ($post->status == 'CLOSED' && $user->isLoggedIn())}
 					{control commentForm}
 				{elseif $post->status == 'ARCHIVED'}
@@ -46,9 +51,7 @@
 				{/if}
 			</div>
 
-			{snippet comments}
-			<a class="ajax" n:href="deleteComment! $comments->id">Smazat komentář</a>
-			{/snippet}
+			
 
 			<a n:href="Edit:edit $post->id">Upravit příspěvek</a>
 			<a n:href="Edit:create" n:if="$user->isLoggedIn()">Vytvořit příspěvek</a>

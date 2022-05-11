@@ -136,9 +136,9 @@ final class PostFacade
 		{
 			$this->database
 				->table('comments')
-				->get($commentId)
+				->where('id', $commentId)
 				->delete();
 		}
 		
-	
+		
 }

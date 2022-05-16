@@ -102,4 +102,5 @@ final class EditPresenter extends Nette\Application\UI\Presenter
 		$this->facade->deletePost($postId);
 		$this->redirect('Homepage:');
 	}
+
 }

@@ -28,6 +28,7 @@
 
       <div class="col-md-3 text-end">
 		{if $user->isLoggedIn()}
+		<a n:href="Registration:reg" type="button" class="btn btn-outline-primary me-2">Změnit heslo</a>
         <a n:href="Sign:out" type="button" class="btn btn-primary">Odhlásit</a>
 		{else}
 		<a n:href="Registration:reg" type="button" class="btn btn-outline-primary me-2">Registrovat</a>

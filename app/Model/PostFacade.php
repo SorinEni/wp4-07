@@ -139,6 +139,13 @@ final class PostFacade
 				->where('id', $commentId)
 				->delete();
 		}
+
+		public function getCategories()
+		{
+			return $this->database
+				->table('categories')
+				->fetchPairs('id', 'name');
+		}
 		
 		
 }

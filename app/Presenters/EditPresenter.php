@@ -40,7 +40,7 @@ final class EditPresenter extends Nette\Application\UI\Presenter
 		
 		$categories = $this->facade->getCategories();
 
-		$form->addSelect('category', 'Kategorie:', $categories)
+		$form->addSelect('category_id', 'Kategorie:', $categories)
 			->setDefaultValue('2');
 			
 			

@@ -147,5 +147,11 @@ final class PostFacade
 				->fetchPairs('id', 'name');
 		}
 		
+		public function getPostByCategoryId(int $categoryId)
+		{
+			return $this->database
+				->table('posts')
+				->where('category_id', $categoryId);
+		}
 		
 }

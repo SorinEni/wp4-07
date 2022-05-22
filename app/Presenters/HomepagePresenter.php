@@ -27,4 +27,12 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
 			->getPublicArticles()
 			->limit(5);
 	}
+
+	public function renderCategory(int $categoryId): void
+	{
+		$this->template->posts = $this->facade
+			->getPublicArticles()
+			->where('category_id', $categoryId)
+			->limit(5);
+	}
 }
